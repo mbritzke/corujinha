@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class WordEntity {
+public class KeyWordEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,7 +1,7 @@
 package com.github.mbritzke.controller;
 
-import com.github.mbritzke.entity.WordEntity;
-import com.github.mbritzke.repository.WordRepository;
+import com.github.mbritzke.entity.KeyWordEntity;
+import com.github.mbritzke.repository.KeyWordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/keywords")
-public class WordController {
+public class KeyWordController {
 
     @Autowired
-    private WordRepository wordRepository;
+    private KeyWordRepository keyWordRepository;
 
     @PostMapping(path = "/add")
-    public ResponseEntity<WordEntity> addNewWord(@RequestBody WordEntity word) {
-        WordEntity wordEntity = new WordEntity();
-        wordEntity.setWord(word.getWord());
-        return ResponseEntity.status(201).body(wordRepository.save(wordEntity));
+    public ResponseEntity<KeyWordEntity> addNewWord(@RequestBody KeyWordEntity word) {
+        KeyWordEntity keyWordEntity = new KeyWordEntity();
+        keyWordEntity.setWord(word.getWord());
+        return ResponseEntity.status(201).body(keyWordRepository.save(keyWordEntity));
     }
 
     @GetMapping(path = "/all")
     public @ResponseBody
-    Iterable<WordEntity> getAllWords() {
-        return wordRepository.findAll();
+    Iterable<KeyWordEntity> getAllWords() {
+        return keyWordRepository.findAll();
     }
 }
