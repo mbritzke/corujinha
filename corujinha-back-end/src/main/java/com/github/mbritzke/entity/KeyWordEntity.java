@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class KeyWordEntity {
@@ -28,5 +29,23 @@ public class KeyWordEntity {
 
     public void setWord(String word) {
         this.word = word;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        KeyWordEntity that = (KeyWordEntity) o;
+
+        if (!Objects.equals(id, that.id)) return false;
+        return Objects.equals(word, that.word);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (word != null ? word.hashCode() : 0);
+        return result;
     }
 }
