@@ -9,14 +9,15 @@ import { PalavraChaveService } from './palavra-chave.service';
 })
 export class PalavrasChaveComponent implements OnInit {
 
+  public palavrasChave: PalavraChave[] = [];
+
   constructor(
     private readonly palavraChaveService: PalavraChaveService,
   ) { }
 
   ngOnInit(): void {
-    console.log('aqui');
     this.palavraChaveService.getAll().subscribe((palavrasChave: PalavraChave[]) => {
-      console.log(palavrasChave);
+      this.palavrasChave = palavrasChave;
     });
   }
 

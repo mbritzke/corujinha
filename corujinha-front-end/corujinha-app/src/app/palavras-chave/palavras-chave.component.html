@@ -1,1 +1,8 @@
-<p>palavras-chave works!</p>
+<mat-form-field appearance="fill">
+  <mat-label>Palavras-Chave</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let palavra of palavrasChave" [value]="palavra.word">
+      {{ palavra.word }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
