@@ -8,6 +8,9 @@ import com.github.mbritzke.repository.KeyWordRepository;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class KeyWordService {
 
@@ -24,5 +27,14 @@ public class KeyWordService {
             throw new EmptyKeyWordException();
         KeyWordEntity keyWordEntity = objectMapper.convertValue(keyWordDto, KeyWordEntity.class);
         return objectMapper.convertValue(keyWordRepository.save(keyWordEntity), KeyWordDto.class);
+    }
+
+    public List<KeyWordDto> getAllKeyWords() {
+        Iterable<KeyWordEntity> keyWordEntities = keyWordRepository.findAll();
+        List<KeyWordDto> keyWordDtoList = new ArrayList<>();
+        for (KeyWordEntity keyWordEntity: keyWordEntities) {
+            keyWordDtoList.add(objectMapper.convertValue(keyWordEntity, KeyWordDto.class));
+        }
+        return keyWordDtoList;
     }
 }

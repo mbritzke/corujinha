@@ -14,6 +14,9 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Collections;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
@@ -53,6 +56,16 @@ public class KeyWordServiceTest {
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void shouldReturnAllKeyWords() {
+        Iterable<KeyWordEntity> keyWordEntities = Collections.singletonList(creatKeyWordEntity());
+        Mockito.when(keyWordRepository.findAll()).thenReturn(keyWordEntities);
+
+        List<KeyWordDto> expectedList = Collections.singletonList(createKeyWordDto());
+        List<KeyWordDto> actualList = keyWordService.getAllKeyWords();
+        Assertions.assertThat(actualList).usingFieldByFieldElementComparator().isEqualTo(expectedList);
     }
 
 }
