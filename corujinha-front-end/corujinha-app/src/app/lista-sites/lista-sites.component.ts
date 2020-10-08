@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ListaSitesService } from './lista-sites.service';
+import { Site } from './sites.model';
 
 @Component({
   selector: 'app-lista-sites',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaSitesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly listaService: ListaSitesService,
+  ) { }
 
   ngOnInit(): void {
+    this.listaService.getSitesByKeyWordId(1).subscribe((lista: Site[]) => {
+      console.log(lista);
+    });
   }
 
 }
