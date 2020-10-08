@@ -23,7 +23,7 @@ public class KeyWordController {
         this.keyWordService = keyWordService;
     }
 
-    @PostMapping(path = "/add")
+    @PostMapping
     public ResponseEntity<KeyWordDto> addNewWord(@RequestBody KeyWordDto keyWordDto) throws EmptyKeyWordException {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(keyWordService.addNewKeyWord(keyWordDto));
@@ -32,7 +32,7 @@ public class KeyWordController {
         }
     }
 
-    @GetMapping(path = "/all")
+    @GetMapping
     public ResponseEntity<List<KeyWordDto>> getAllWords() {
         return ResponseEntity.ok(keyWordService.getAllKeyWords());
     }
