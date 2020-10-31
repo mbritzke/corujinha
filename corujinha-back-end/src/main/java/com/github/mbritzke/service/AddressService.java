@@ -1,7 +1,6 @@
 package com.github.mbritzke.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.github.mbritzke.dto.AddressDto;
 import com.github.mbritzke.entity.AddressEntity;
 import com.github.mbritzke.repository.AddressRepository;
@@ -19,6 +18,11 @@ public class AddressService {
     public AddressService(ObjectMapper objectMapper, AddressRepository addressRepository) {
         this.objectMapper = objectMapper;
         this.addressRepository = addressRepository;
+    }
+
+    public AddressDto addNewAddress(AddressDto addressDto) {
+        AddressEntity addressEntity = objectMapper.convertValue(addressDto, AddressEntity.class);
+        return objectMapper.convertValue(addressRepository.save(addressEntity), AddressDto.class);
     }
 
     public List<AddressDto> getAddressesForKeyWord(Integer keyWordId) {
