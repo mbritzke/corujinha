@@ -16,6 +16,6 @@ export class PalavraChaveService {
   ) { }
 
   public getAll(): Observable<PalavraChave[]> {
-    return this.http.get<PalavraChave[]>(`${URL}keywords/all`);
+    return this.http.get<PalavraChave[]>(`${URL}keywords`);
   }
 }
