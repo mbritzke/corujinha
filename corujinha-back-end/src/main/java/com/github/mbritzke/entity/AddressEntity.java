@@ -1,7 +1,5 @@
 package com.github.mbritzke.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +14,6 @@ public class AddressEntity {
     private String name;
     private String url;
     private String language;
-    @JsonIgnore
     private Integer keyWordId;
 
     public Integer getId() {

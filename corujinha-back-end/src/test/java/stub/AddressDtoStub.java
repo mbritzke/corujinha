@@ -13,6 +13,7 @@ public class AddressDtoStub {
         addressDto.setName("42");
         addressDto.setUrl("www.42.com.br");
         addressDto.setLanguage("Portuguese");
+        addressDto.setKeyWordId("1");
         return addressDto;
     }
 

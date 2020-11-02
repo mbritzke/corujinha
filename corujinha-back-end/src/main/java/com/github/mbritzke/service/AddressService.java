@@ -5,6 +5,7 @@ import com.github.mbritzke.dto.AddressDto;
 import com.github.mbritzke.entity.AddressEntity;
 import com.github.mbritzke.repository.AddressRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +22,8 @@ public class AddressService {
     }
 
     public AddressDto addNewAddress(AddressDto addressDto) {
+        if(StringUtils.isEmpty(addressDto.getUrl()))
+            return null;
         AddressEntity addressEntity = objectMapper.convertValue(addressDto, AddressEntity.class);
         return objectMapper.convertValue(addressRepository.save(addressEntity), AddressDto.class);
     }

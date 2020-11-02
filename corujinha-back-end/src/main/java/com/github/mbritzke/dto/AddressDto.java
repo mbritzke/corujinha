@@ -6,6 +6,7 @@ public class AddressDto {
     private String name;
     private String url;
     private String language;
+    private String keyWordId;
 
     public AddressDto() {
     }
@@ -40,5 +41,13 @@ public class AddressDto {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getKeyWordId() {
+        return keyWordId;
+    }
+
+    public void setKeyWordId(String keyWordId) {
+        this.keyWordId = keyWordId;
     }
 }
