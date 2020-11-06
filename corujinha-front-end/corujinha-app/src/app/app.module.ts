@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BrowserAnimationsModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

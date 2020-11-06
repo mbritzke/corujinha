@@ -9,7 +9,16 @@ import { PalavraChaveService } from './palavra-chave.service';
 })
 export class PalavrasChaveComponent implements OnInit {
 
-  public palavrasChave: PalavraChave[] = [];
+  public palavrasChave: PalavraChave[] = [
+    {
+      id: 1,
+      word: 'word',
+    },
+    {
+      id: 2,
+      word: 'word 2',
+    },
+  ];
 
   constructor(
     private readonly palavraChaveService: PalavraChaveService,
