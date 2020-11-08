@@ -7,6 +7,7 @@ import com.github.mbritzke.exception.EmptyKeyWordException;
 import com.github.mbritzke.repository.KeyWordRepository;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class KeyWordService {
     }
 
     public KeyWordDto addNewKeyWord(KeyWordDto keyWordDto) {
-        if (Strings.isEmpty(keyWordDto.getWord()))
+        if (StringUtils.isEmpty(keyWordDto.getWord()))
             throw new EmptyKeyWordException();
         KeyWordEntity keyWordEntity = objectMapper.convertValue(keyWordDto, KeyWordEntity.class);
         return objectMapper.convertValue(keyWordRepository.save(keyWordEntity), KeyWordDto.class);

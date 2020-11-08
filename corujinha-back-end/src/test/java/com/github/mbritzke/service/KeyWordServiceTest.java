@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static stub.KeyWordDtoStub.createKeyWordDto;
-import static stub.KeyWordEntityStub.creatKeyWordEntity;
+import static stub.KeyWordEntityStub.createKeyWordEntity;
 
 @RunWith(MockitoJUnitRunner.class)
 public class KeyWordServiceTest {
@@ -37,7 +37,7 @@ public class KeyWordServiceTest {
 
     @Test
     public void shouldAddKeyWord() {
-        KeyWordEntity keyWordEntity = creatKeyWordEntity();
+        KeyWordEntity keyWordEntity = createKeyWordEntity();
         Mockito.when(keyWordRepository.save(eq(keyWordEntity))).thenReturn(keyWordEntity);
 
         KeyWordDto expected = createKeyWordDto();
@@ -52,7 +52,7 @@ public class KeyWordServiceTest {
             keyWordService.addNewKeyWord(keyWordDto);
         });
 
-        String expectedMessage = "keyword not found";
+        String expectedMessage = "Keyword not found";
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
@@ -60,7 +60,7 @@ public class KeyWordServiceTest {
 
     @Test
     public void shouldReturnAllKeyWords() {
-        Iterable<KeyWordEntity> keyWordEntities = Collections.singletonList(creatKeyWordEntity());
+        Iterable<KeyWordEntity> keyWordEntities = Collections.singletonList(createKeyWordEntity());
         Mockito.when(keyWordRepository.findAll()).thenReturn(keyWordEntities);
 
         List<KeyWordDto> expectedList = Collections.singletonList(createKeyWordDto());
