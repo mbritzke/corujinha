@@ -3,6 +3,7 @@ package com.github.mbritzke.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.mbritzke.dto.AddressDto;
 import com.github.mbritzke.entity.AddressEntity;
+import com.github.mbritzke.exception.EmptyAddressException;
 import com.github.mbritzke.repository.AddressRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -22,8 +23,8 @@ public class AddressService {
     }
 
     public AddressDto addNewAddress(AddressDto addressDto) {
-        if(StringUtils.isEmpty(addressDto.getUrl()))
-            return null;
+        if (StringUtils.isEmpty(addressDto.getUrl()))
+            throw new EmptyAddressException();
         AddressEntity addressEntity = objectMapper.convertValue(addressDto, AddressEntity.class);
         return objectMapper.convertValue(addressRepository.save(addressEntity), AddressDto.class);
     }
@@ -31,7 +32,7 @@ public class AddressService {
     public List<AddressDto> getAddressesByKeyWordId(Integer keyWordId) {
         List<AddressEntity> addressEntities = addressRepository.findAllByKeyWordId(keyWordId);
         return addressEntities.stream().map(
-                addressEntity -> objectMapper.convertValue(addressEntity, com.github.mbritzke.dto.AddressDto.class))
+                addressEntity -> objectMapper.convertValue(addressEntity, AddressDto.class))
                 .collect(Collectors.toList());
     }
 }
