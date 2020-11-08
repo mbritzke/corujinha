@@ -60,7 +60,7 @@ public class KeyWordServiceTest {
 
     @Test
     public void shouldReturnAllKeyWords() {
-        Iterable<KeyWordEntity> keyWordEntities = Collections.singletonList(createKeyWordEntity());
+        List<KeyWordEntity> keyWordEntities = Collections.singletonList(createKeyWordEntity());
         Mockito.when(keyWordRepository.findAll()).thenReturn(keyWordEntities);
 
         List<KeyWordDto> expectedList = Collections.singletonList(createKeyWordDto());

@@ -5,12 +5,11 @@ import com.github.mbritzke.dto.KeyWordDto;
 import com.github.mbritzke.entity.KeyWordEntity;
 import com.github.mbritzke.exception.EmptyKeyWordException;
 import com.github.mbritzke.repository.KeyWordRepository;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class KeyWordService {
@@ -31,11 +30,9 @@ public class KeyWordService {
     }
 
     public List<KeyWordDto> getAllKeyWords() {
-        Iterable<KeyWordEntity> keyWordEntities = keyWordRepository.findAll();
-        List<KeyWordDto> keyWordDtoList = new ArrayList<>();
-        for (KeyWordEntity keyWordEntity: keyWordEntities) {
-            keyWordDtoList.add(objectMapper.convertValue(keyWordEntity, KeyWordDto.class));
-        }
-        return keyWordDtoList;
+        List<KeyWordEntity> words = keyWordRepository.findAll();
+        return words.stream()
+                .map(keyWordEntity -> objectMapper.convertValue(keyWordEntity, KeyWordDto.class))
+                .collect(Collectors.toList());
     }
 }
