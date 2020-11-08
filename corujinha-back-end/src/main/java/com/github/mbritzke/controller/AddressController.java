@@ -28,7 +28,7 @@ public class AddressController {
     }
 
     @GetMapping("/{keyWordId}")
-    public ResponseEntity<List<AddressDto>> getAllWords(@PathVariable("keyWordId") Integer keyWordId) {
-        return ResponseEntity.ok(addressService.getAddressesForKeyWord(keyWordId));
+    public ResponseEntity<List<AddressDto>> getAddressesByKeyWordId(@PathVariable("keyWordId") Integer keyWordId) {
+        return ResponseEntity.ok(addressService.getAddressesByKeyWordId(keyWordId));
     }
 }

@@ -40,7 +40,7 @@ public class AddressServiceTest {
         Mockito.when(addressRepository.findAllByKeyWordId(eq(keyWordEntity.getId()))).thenReturn(createListOfAddressEntity());
 
         List<AddressDto> expected = createListOfAddresDto();
-        List<AddressDto> actual = addressService.getAddressesForKeyWord(keyWordEntity.getId());
+        List<AddressDto> actual = addressService.getAddressesByKeyWordId(keyWordEntity.getId());
         Assertions.assertThat(actual).usingFieldByFieldElementComparator().isEqualTo(expected);
     }
 
@@ -49,7 +49,7 @@ public class AddressServiceTest {
         KeyWordEntity keyWordEntity = creatKeyWordEntity();
         Mockito.when(addressRepository.findAllByKeyWordId(eq(keyWordEntity.getId()))).thenReturn(new ArrayList<>());
 
-        List<AddressDto> actual = addressService.getAddressesForKeyWord(keyWordEntity.getId());
+        List<AddressDto> actual = addressService.getAddressesByKeyWordId(keyWordEntity.getId());
         Assert.assertTrue(actual.isEmpty());
     }
 }

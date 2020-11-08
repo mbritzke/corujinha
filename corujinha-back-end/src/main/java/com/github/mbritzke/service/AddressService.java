@@ -28,7 +28,7 @@ public class AddressService {
         return objectMapper.convertValue(addressRepository.save(addressEntity), AddressDto.class);
     }
 
-    public List<AddressDto> getAddressesForKeyWord(Integer keyWordId) {
+    public List<AddressDto> getAddressesByKeyWordId(Integer keyWordId) {
         List<AddressEntity> addressEntities = addressRepository.findAllByKeyWordId(keyWordId);
         return addressEntities.stream().map(
                 addressEntity -> objectMapper.convertValue(addressEntity, com.github.mbritzke.dto.AddressDto.class))
