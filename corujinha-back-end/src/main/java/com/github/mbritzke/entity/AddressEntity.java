@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class AddressEntity {
@@ -56,4 +57,20 @@ public class AddressEntity {
         this.keyWordId = keyWordId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AddressEntity that = (AddressEntity) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(url, that.url) &&
+                Objects.equals(language, that.language) &&
+                Objects.equals(keyWordId, that.keyWordId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, url, language, keyWordId);
+    }
 }

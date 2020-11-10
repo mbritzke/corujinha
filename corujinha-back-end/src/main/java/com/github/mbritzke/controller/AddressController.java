@@ -1,7 +1,9 @@
 package com.github.mbritzke.controller;
 
 import com.github.mbritzke.dto.AddressDto;
+import com.github.mbritzke.exception.EmptyAddressException;
 import com.github.mbritzke.service.AddressService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +25,12 @@ public class AddressController {
     }
 
     @PostMapping
-    public AddressDto addNewAddress(@RequestBody AddressDto addressDto) {
-        return addressService.addNewAddress(addressDto);
+    public ResponseEntity<AddressDto> addNewAddress(@RequestBody AddressDto addressDto) {
+        try{
+            return ResponseEntity.status(HttpStatus.CREATED).body(addressService.addNewAddress(addressDto));
+        } catch (EmptyAddressException emptyAddressException) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        }
     }
 
     @GetMapping("/{keyWordId}")
