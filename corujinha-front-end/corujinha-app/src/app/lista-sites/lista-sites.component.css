@@ -2,3 +2,18 @@ table {
   width: 100%;
   height: 10rem;
 }
+
+.th {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: #03A9F4;
+  background-color: transparent;
+  text-decoration: underline;
+}
