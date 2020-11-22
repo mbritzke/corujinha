@@ -2,8 +2,6 @@
   justify-content: center;
   width: 65rem;
   height: 80%;
-  padding-bottom: 0;
-  padding-top: 0;
   background-color:  #FAFAFA;
 }
 
@@ -14,4 +12,15 @@ section {
   justify-content: center;
   align-items: center;
   background-color: #35393c;
+}
+
+img {
+  width: 7rem;
+  height: 7rem;
+  margin-right: 50px;
+}
+
+.acoes {
+  margin-bottom: 15px;
+  display: flex;
 }
