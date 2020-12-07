@@ -1,0 +1,10 @@
+<form>
+  <mat-form-field>
+    <mat-label>Palavras-Chave</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let palavra of palavrasChave" [value]="palavra.word" (click)="this.onSelecao(palavra)">
+        {{ palavra.word }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
