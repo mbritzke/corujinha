@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ListaSitesService } from './lista-sites.service';
 import { Site } from './sites.model';
@@ -9,25 +8,28 @@ import { Site } from './sites.model';
   templateUrl: './lista-sites.component.html',
   styleUrls: ['./lista-sites.component.css']
 })
-export class ListaSitesComponent implements OnInit {
+export class ListaSitesComponent implements OnInit, OnChanges {
 
-  displayedColumns: string[] = ['id', 'name', 'url', 'language'];
-  dataSource;
+  public displayedColumns: string[] = ['id', 'name', 'url', 'language'];
+  public dataSource;
 
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  @Input()
+  public palavraId: number;
 
   constructor(
     private readonly listaService: ListaSitesService,
   ) { }
 
-  ngOnInit(): void {
-    this.listaService.getSitesByKeyWordId(1).subscribe((lista: Site[]) => {
+  ngOnInit(): void {}
+
+  ngOnChanges(): void {
+    if (!this.palavraId) {
+      return;
+    }
+
+    this.listaService.getSitesByKeyWordId(this.palavraId).subscribe((lista: Site[]) => {
       console.log(lista);
       this.dataSource = new MatTableDataSource<Site>(lista);
     });
-  }
-
-  ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PalavraChave } from './palavra-chave.model';
 import { PalavraChaveService } from './palavra-chave.service';
 
@@ -9,16 +9,10 @@ import { PalavraChaveService } from './palavra-chave.service';
 })
 export class PalavrasChaveComponent implements OnInit {
 
-  public palavrasChave: PalavraChave[] = [
-    {
-      id: 1,
-      word: 'word',
-    },
-    {
-      id: 2,
-      word: 'word 2',
-    },
-  ];
+  public palavrasChave: PalavraChave[] = [];
+
+  @Output()
+  public palavraSelecionada = new EventEmitter<string>();
 
   constructor(
     private readonly palavraChaveService: PalavraChaveService,
@@ -30,4 +24,7 @@ export class PalavrasChaveComponent implements OnInit {
     });
   }
 
+  public onSelecao(palavra): void {
+    this.palavraSelecionada.emit(palavra.id);
+  }
 }

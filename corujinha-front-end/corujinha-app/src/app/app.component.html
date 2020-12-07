@@ -2,8 +2,8 @@
   <mat-card>
     <div class="acoes">
       <img src="/assets/images/owl.png" alt="Corujinha">
-      <app-palavras-chave></app-palavras-chave>
+      <app-palavras-chave (palavraSelecionada)="onTrocaPalavra($event)"></app-palavras-chave>
     </div>
-    <app-lista-sites></app-lista-sites>
+    <app-lista-sites [palavraId]="this.palavraSelecionada"></app-lista-sites>
   </mat-card>
 </section>

@@ -18,23 +18,11 @@ export class ListaSitesService {
 
   public getSitesByKeyWordId(keyWordId: number): Observable<Site[]> {
     console.log(URL);
-    return this.http.get<Site[]>(`${URL}address/${keyWordId}`)
+    return this.http.get<Site[]>(`${URL}addresses/${keyWordId}`)
       .pipe(
         catchError(err => {
-          return of([
-            {
-              id: 1,
-              name: 'Site',
-              url: 'https://g1.globo.com/',
-              language: 'portugues'
-            },
-            {
-              id: 2,
-              name: 'Site 2',
-              url: 'https://g1.globo.com/mundo',
-              language: 'portugues'
-            },
-          ]);
+          console.error(err)
+          return of([]);
         })
       );
   }

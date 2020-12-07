@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'corujinha-app';
+
+  public title = 'corujinha-app';
+  public palavraSelecionada = null;
+
+  constructor() { }
+
+  public onTrocaPalavra(palavraId: number): void {
+    console.log(palavraId);
+    this.palavraSelecionada = palavraId;
+  }
 }
